@@ -1,0 +1,34 @@
+@model Docente
+@{ ViewData["Title"] = Model.Id == 0 ? "Nuevo docente" : "Editar docente"; }
+<h3 class="page-title">@ViewData["Title"]</h3>
+<div class="card-table p-4" style="max-width:640px">
+    <form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Apellidos" class="form-label"></label>
+                <input asp-for="Apellidos" class="form-control" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Correo" class="form-label"></label>
+            <input asp-for="Correo" class="form-control" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Especialidad" class="form-label"></label>
+            <input asp-for="Especialidad" class="form-control" />
+            <span asp-validation-for="Especialidad" class="text-danger"></span>
+        </div>
+        <button class="btn btn-primary">Guardar</button>
+        <a class="btn btn-outline-secondary" asp-action="Index">Cancelar</a>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
