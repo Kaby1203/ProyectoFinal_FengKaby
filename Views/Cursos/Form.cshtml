@@ -1,0 +1,49 @@
+@model Curso
+@{ ViewData["Title"] = Model.Id == 0 ? "Nuevo curso" : "Editar curso"; }
+<h3 class="page-title">@ViewData["Title"]</h3>
+<div class="card-table p-4" style="max-width:720px">
+    <form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="Codigo" class="form-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="col-md-8 mb-3">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Creditos" class="form-label"></label>
+                <input asp-for="Creditos" type="number" class="form-control" />
+                <span asp-validation-for="Creditos" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="CuposMaximos" class="form-label"></label>
+                <input asp-for="CuposMaximos" type="number" class="form-control" />
+                <span asp-validation-for="CuposMaximos" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CarreraId" class="form-label"></label>
+            <select asp-for="CarreraId" asp-items="(SelectList)ViewBag.Carreras" class="form-select">
+                <option value="">Seleccione una carrera</option>
+            </select>
+            <span asp-validation-for="CarreraId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DocenteId" class="form-label"></label>
+            <select asp-for="DocenteId" asp-items="(SelectList)ViewBag.Docentes" class="form-select">
+                <option value="">Sin asignar</option>
+            </select>
+        </div>
+        <button class="btn btn-primary">Guardar</button>
+        <a class="btn btn-outline-secondary" asp-action="Index">Cancelar</a>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

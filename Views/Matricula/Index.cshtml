@@ -1,0 +1,44 @@
+@model IEnumerable<CursoMatriculaViewModel>
+@{ ViewData["Title"] = "Matricular cursos"; }
+<h3 class="page-title mb-0">Oferta Académica Disponible</h3>
+<p class="text-muted">@ViewBag.Carrera · Periodo 2026-III</p>
+
+<div class="card-table">
+<table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+        <tr><th>Código</th><th>Curso</th><th class="text-center">Créditos</th><th>Cupos</th><th>Docente</th><th class="text-end"></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="fw-semibold">@item.Curso.Codigo</td>
+            <td>@item.Curso.Nombre</td>
+            <td class="text-center">@item.Curso.Creditos</td>
+            <td>
+                @if (item.CuposDisponibles > 0) { <span class="badge text-bg-success">@item.CuposDisponibles disponibles</span> }
+                else { <span class="badge text-bg-danger">Sin cupos</span> }
+            </td>
+            <td>@(item.Curso.Docente?.NombreCompleto ?? "Por asignar")</td>
+            <td class="text-end">
+                @if (item.YaMatriculado)
+                {
+                    <span class="badge text-bg-primary">Matriculado</span>
+                }
+                else if (item.CuposDisponibles > 0)
+                {
+                    <form asp-action="Inscribir" method="post" class="d-inline">
+                        <input type="hidden" name="cursoId" value="@item.Curso.Id" />
+                        <button class="btn btn-sm btn-primary">Matricular</button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+</div>
+@if (!Model.Any())
+{
+    <p class="text-muted mt-3">Aún no hay cursos registrados para su carrera.</p>
+}
