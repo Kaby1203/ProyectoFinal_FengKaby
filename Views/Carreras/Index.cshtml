@@ -1,0 +1,43 @@
+@model IEnumerable<Carrera>
+@{
+    ViewData["Title"] = "Carreras";
+    var esAdmin = User.IsInRole("Administrador");
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h3 class="page-title mb-0">@(esAdmin ? "Administrar Carreras" : "Carreras disponibles")</h3>
+        <span class="text-muted small">@Model.Count() carreras registradas</span>
+    </div>
+    @if (esAdmin)
+    {
+        <a class="btn btn-success" asp-action="Create"><i class="bi bi-plus-lg"></i> Agregar carrera</a>
+    }
+</div>
+
+<div class="card-table">
+<table class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+        <tr><th>Carrera</th><th>Descripción</th><th class="text-center">Cursos</th>@if (esAdmin) { <th class="text-end">Acciones</th> }</tr>
+    </thead>
+    <tbody>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td class="fw-semibold">@c.Nombre</td>
+            <td>@c.Descripcion</td>
+            <td class="text-center">@c.Cursos.Count</td>
+            @if (esAdmin)
+            {
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@c.Id">Editar</a>
+                    <form asp-action="Delete" asp-route-id="@c.Id" method="post" class="d-inline"
+                          onsubmit="return confirm('¿Eliminar la carrera @(c.Nombre)?');">
+                        <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                    </form>
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
+</div>

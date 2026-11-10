@@ -1,0 +1,42 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Crear cuenta";
+    Layout = "_AuthLayout";
+}
+<h4 class="text-center fw-bold">Crea tu cuenta</h4>
+<p class="text-center text-muted small">Completa tus datos para iniciar tu experiencia universitaria</p>
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+    <div class="mb-3">
+        <label asp-for="NombreCompleto" class="form-label"></label>
+        <input asp-for="NombreCompleto" class="form-control" />
+        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Correo" class="form-label"></label>
+        <input asp-for="Correo" class="form-control" placeholder="nombre@unimatricula.com" />
+        <span asp-validation-for="Correo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CarreraId" class="form-label"></label>
+        <select asp-for="CarreraId" asp-items="(SelectList)ViewBag.Carreras" class="form-select">
+            <option value="">Selecciona tu carrera</option>
+        </select>
+        <span asp-validation-for="CarreraId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" placeholder="Mínimo 6 caracteres, con un número" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button class="btn btn-primary w-100">Registrarme</button>
+</form>
+<p class="text-center small mt-3 mb-0">¿Ya tienes cuenta? <a asp-action="Login">Inicia sesión</a></p>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

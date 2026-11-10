@@ -1,0 +1,23 @@
+:root { --indigo: #283593; --indigo-dark: #1a237e; --bg: #f5f6fa; }
+body { background: var(--bg); font-family: "Inter", "Segoe UI", system-ui, sans-serif; }
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar { width: 240px; background: var(--indigo-dark); color: #fff; padding: 1.25rem 1rem; flex-shrink: 0; }
+.brand { font-weight: 700; font-size: 1.15rem; }
+.brand-sub { font-size: .75rem; opacity: .7; }
+.sidebar .nav-link { color: rgba(255,255,255,.8); border-radius: .5rem; padding: .55rem .75rem; font-size: .9rem; }
+.sidebar .nav-link i { margin-right: .5rem; }
+.sidebar .nav-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+.sidebar .nav-link.active { background: #fff; color: var(--indigo-dark); font-weight: 600; }
+.content-area { flex: 1; min-width: 0; }
+.topbar { background: #fff; padding: .6rem 1.5rem; text-align: right; border-bottom: 1px solid #e5e7eb; }
+.page-title { font-weight: 700; color: #1f2937; }
+.btn-primary { background: var(--indigo); border-color: var(--indigo); }
+.btn-primary:hover { background: var(--indigo-dark); border-color: var(--indigo-dark); }
+.stat-card { background: #fff; border-radius: .75rem; padding: 1.1rem 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.stat-card .num { font-size: 1.8rem; font-weight: 700; color: var(--indigo); }
+.hero { background: linear-gradient(135deg, var(--indigo-dark), #3949ab); color: #fff; border-radius: .75rem; padding: 1.75rem; }
+.card-table { background: #fff; border-radius: .75rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); overflow: hidden; }
+.auth-body { background: linear-gradient(135deg, var(--indigo-dark), #3949ab); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.auth-card { background: #fff; border-radius: 1rem; padding: 2rem; width: 100%; max-width: 440px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.brand-dark { font-weight: 700; color: var(--indigo); font-size: 1.2rem; }
+.field-validation-error, .text-danger { font-size: .8rem; }
